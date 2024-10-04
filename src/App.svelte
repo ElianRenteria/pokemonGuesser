@@ -1,6 +1,5 @@
 <script>
   import { toast } from 'svelte-toastify';
-  import 'svelte-toastify/dist/svelte-toastify.css';
   import { onMount } from 'svelte';
 
   
