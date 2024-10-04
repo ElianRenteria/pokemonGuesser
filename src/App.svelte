@@ -1,5 +1,9 @@
 <script>
+  import { toast } from 'svelte-toastify';
+  import 'svelte-toastify/dist/svelte-toastify.css';
   import { onMount } from 'svelte';
+
+  
   let pokemon = { name: '', image: '' };
   let guess = '';
   let feedback = '';
@@ -24,13 +28,14 @@
   function checkGuess() {
     if (guess.toLowerCase() === pokemon.name.toLowerCase()) {
       feedback = 'Correct! 🎉';
-
+      toast.success('Correct! 🎉', { duration: 2000 });
       // Generate a new Pokémon after 2 seconds
       setTimeout(() => {
         fetchRandomPokemon();
       }, 2000);
     } else {
       feedback = 'Incorrect, try again.';
+      toast.error('Incorrect, try again!', { duration: 1000 });
     }
   }
 
