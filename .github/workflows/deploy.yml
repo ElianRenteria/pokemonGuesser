@@ -21,15 +21,20 @@ jobs:
       with:
         node-version: '20'
 
-    # Step 3: Install dependencies
+    # Step 3: Create the .env file
+    - name: Create .env file
+      run: |
+        echo VITE_API_URL=${{ secrets.API_URL }} >> .env
+
+    # Step 4: Install dependencies
     - name: Install dependencies
       run: npm install
 
-    # Step 4: Build the Svelte app (output will go into the dist/ folder)
+    # Step 5: Build the Svelte app (output will go into the dist/ folder)
     - name: Build project
       run: npm run build
 
-    # Step 5: Deploy the dist folder to the gh-pages branch
+    # Step 6: Deploy the dist folder to the gh-pages branch
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
