@@ -24,6 +24,11 @@
   function checkGuess() {
     if (guess.toLowerCase() === pokemon.name.toLowerCase()) {
       feedback = 'Correct! 🎉';
+
+      // Generate a new Pokémon after 2 seconds
+      setTimeout(() => {
+        fetchRandomPokemon();
+      }, 2000);
     } else {
       feedback = 'Incorrect, try again.';
     }
@@ -80,5 +85,9 @@
   }
   button {
     margin-top: 1rem;
+  }
+  input {
+    width: 60%;
+    min-width: 100px;
   }
 </style>
