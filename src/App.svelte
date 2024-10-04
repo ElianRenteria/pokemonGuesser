@@ -46,33 +46,35 @@
 </script>
 
 <main>
-  <h1>Guess the Pokémon!</h1>
+  <div class="container">
+    <h1>Guess the Pokémon!</h1>
 
-  <!-- Show loading text while fetching -->
-  {#if isLoading}
-    <article aria-busy="true"></article>
-  {/if}
+    <!-- Show loading text while fetching -->
+    {#if isLoading}
+      <article aria-busy="true"></article>
+    {/if}
 
-  <!-- Display the random Pokémon image when loaded -->
-  {#if !isLoading}
-    <img src={pokemon.image} alt="Random Pokémon" width="200" />
-  {/if}
+    <!-- Display the random Pokémon image when loaded -->
+    {#if !isLoading}
+      <img src={pokemon.image} alt="Random Pokémon" width="200" />
+    {/if}
 
-  <!-- Input for the user to guess the Pokémon's name, handles 'Enter' key -->
-  <input
-    type="text"
-    bind:value={guess}
-    placeholder="Enter Pokémon name"
-    on:keypress={handleKeyPress}
-  />
+    <!-- Input for the user to guess the Pokémon's name, handles 'Enter' key -->
+    <input
+      type="text"
+      bind:value={guess}
+      placeholder="Enter Pokémon name"
+      on:keypress={handleKeyPress}
+    />
 
-  <!-- Feedback to show whether the guess was correct or not -->
-  {#if feedback}
-    <p>{feedback}</p>
-  {/if}
+    <!-- Feedback to show whether the guess was correct or not -->
+    {#if feedback}
+      <p>{feedback}</p>
+    {/if}
 
-  <!-- Button to fetch a new random Pokémon -->
-  <button on:click={fetchRandomPokemon}>Next Pokémon</button>
+    <!-- Button to fetch a new random Pokémon -->
+    <button on:click={fetchRandomPokemon}>Next Pokémon</button>
+  </div>
 </main>
 
 <style>
@@ -89,5 +91,10 @@
   input {
     width: 60%;
     min-width: 100px;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 </style>
