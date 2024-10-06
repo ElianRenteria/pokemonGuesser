@@ -23,7 +23,7 @@
     } catch (error) {
       console.error('Error fetching Pokemon:', error);
     } finally {
-      isLoading = false;  // Hide loading
+      isLoading = false; 
     }
   }
 
@@ -43,6 +43,7 @@
     if (guess.toLowerCase() === pokemon.name.toLowerCase()) {
       feedback = 'Correct! 🎉';
       showToast('success', 'Correct! 🎉', '', 2500, false);
+      isLoading = true; 
       setTimeout(() => {
         fetchRandomPokemon();
       }, 2000);
@@ -137,4 +138,3 @@
     border: none;
   }
 </style>
-
