@@ -65,7 +65,11 @@
   function skip_pokemon() {
     if (!isLoading) {
       showToast('info', 'Answer:', pokemon.name, 3500, true);
-      fetchRandomPokemon();
+      isLoading = true;
+      setTimeout(() => {
+        isLoading = false;
+        fetchRandomPokemon();
+      }, 500);
     }
   }
 
