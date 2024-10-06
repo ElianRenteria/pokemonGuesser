@@ -1,5 +1,5 @@
 <script>
-  import { toasts, ToastContainer, FlatToast } from "svelte-toasts";
+  import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
   import { onMount } from 'svelte';
 
   let pokemon = { name: '', image: '' };
@@ -7,7 +7,6 @@
   let feedback = '';
   let isLoading = false;
   const API_URL = import.meta.env.VITE_API_URL;
-
 
   async function fetchRandomPokemon() {
     if (isLoading) return; 
@@ -44,6 +43,8 @@
     if (guess.toLowerCase() === pokemon.name.toLowerCase()) {
       feedback = 'Correct! 🎉';
       showToast('success', 'Correct! 🎉', '', 2500, false);
+      isLoading = true; 
+
 
       setTimeout(() => {
         fetchRandomPokemon();
