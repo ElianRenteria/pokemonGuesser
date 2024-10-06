@@ -47,6 +47,7 @@
 
 
       setTimeout(() => {
+        isLoading = false;
         fetchRandomPokemon();
       }, 2000);
     } else {
