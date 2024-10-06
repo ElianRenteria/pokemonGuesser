@@ -9,9 +9,8 @@
   const API_URL = import.meta.env.VITE_API_URL;
 
   async function fetchRandomPokemon() {
-    if (isLoading) return; // Prevent multiple API calls when already loading
-    
-    isLoading = true;  // Show loading
+    if (isLoading) return; 
+    isLoading = true; 
     try {
       const response = await fetch(API_URL);
       const data = await response.json();
