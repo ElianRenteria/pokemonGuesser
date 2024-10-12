@@ -1,5 +1,5 @@
 <script>
-  import { toasts, ToastContainer, FlatToast }  from "svelte-toasts";
+  import { toasts, ToastContainer, FlatToast } from "svelte-toasts";
   import { onMount } from 'svelte';
 
   let pokemon = { name: '', image: '' };
@@ -7,6 +7,12 @@
   let feedback = '';
   let isLoading = false;
   const API_URL = import.meta.env.VITE_API_URL;
+  let user_theme = false; // `true` for dark, `false` for light
+
+  // Check system theme preference
+  function detectTheme() {
+    user_theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
 
   async function fetchRandomPokemon() {
     if (isLoading) return; 
@@ -34,7 +40,7 @@
       duration: d,
       placement: 'top-right',
       type: t,
-      theme: 'dark',
+      theme: user_theme ? 'dark' : 'light',
       showProgress: p,
     });
   };
@@ -43,8 +49,7 @@
     if (guess.toLowerCase() === pokemon.name.toLowerCase()) {
       feedback = 'Correct! 🎉';
       showToast('success', 'Correct! 🎉', '', 2500, false);
-      isLoading = true; 
-
+      isLoading = true;
 
       setTimeout(() => {
         isLoading = false;
@@ -73,8 +78,12 @@
     }
   }
 
-  onMount(fetchRandomPokemon);
+  onMount(() => {
+    detectTheme(); // Set theme on mount
+    fetchRandomPokemon();
+  });
 </script>
+
 
 <main>
   <div class="container">
